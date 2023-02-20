@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # Create ENV variable to fix tzdata region selection during 'docker build' command.
-ENV TZ=Asia/Dubai
+ENV TZ=America/New_York
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Update apt-get
@@ -44,7 +44,7 @@ COPY . /app
 WORKDIR /app
 
 # Install the application dependencies
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r ./flask/requirements.txt
 
 # Run the application
-CMD [ "python3", "app.py" ]
+CMD [ "python3", "./flask/app.py" ]
