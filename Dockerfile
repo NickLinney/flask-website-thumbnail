@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
 
+# Create ENV variable to fix tzdata region selection during 'docker build' command.
+ENV TZ=Asia/Dubai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Update apt-get
 RUN apt-get update
 
